@@ -1,9 +1,9 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+/*#root {*/
+/*  max-width: 1280px;*/
+/*  margin: 0 auto;*/
+/*  padding: 2rem;*/
+/*  text-align: center;*/
+/*}*/
 
 .logo {
   height: 6em;
@@ -39,4 +39,17 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.carousel-item-custom {
+  background-color: #C9E0C6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+}
+
+.carousel-item-custom img {
+  height: 600px;
+  object-fit: cover;
 }

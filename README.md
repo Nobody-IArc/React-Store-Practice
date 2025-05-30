@@ -1,3 +1,10 @@
+# 진행 내역
+|날짜|내역|비고|
+|:-:|:-:|:-:|
+|05.30|프로젝트 설정 및 기본 레이아웃 생성|NavBar & Carousel: 내비게이션 바 & 캐러셀 코드 작성|
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

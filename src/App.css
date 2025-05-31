@@ -53,3 +53,26 @@
   height: 600px;
   object-fit: cover;
 }
+
+.project_header{
+  color: #1e2826;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 72px;
+}
+.hr{
+  width: 100px;
+  height: 6px;
+  border-radius: 2px;
+  background-color: #fd357b;
+}
+.project_header_container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

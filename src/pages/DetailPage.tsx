@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { type Game } from '../data/Gamedata';
 import { useLocation } from 'react-router-dom';
@@ -14,6 +15,9 @@ const DetailPage = () => {
     const game = state?.game;
     // console.log(game);
     // console.log(state);
+
+    // 팝업 부분 - 지원이 종료된 함수 사용으로 인해 대안 찾기
+
     return (
         <div>
             <Container className='mt-5'>

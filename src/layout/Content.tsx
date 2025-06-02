@@ -7,7 +7,7 @@ import CartPage from '../pages/CartPage';
 import DetailPage from '../pages/DetailPage';
 import LoginPage from '../pages/LoginPage';
 import HomePage from '../pages/HomePage';
-import { PersonArmsUp } from 'react-bootstrap-icons';
+import { PersonArmsUp, Basket3 } from 'react-bootstrap-icons';
 
 // import DetailPage2 from '../pages/DetailPage2';
 
@@ -28,6 +28,9 @@ const Content = () => {
                         <Nav.Link href='/login' className='d-flex align-items-center'>
                             <PersonArmsUp size={24} className='me-2' />Login
                         </Nav.Link>
+                        <Nav.Link href='/cart' className='d-flex align-items-center'>
+                            <Basket3 size={24} className='me-2' />Cart
+                        </Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -40,6 +43,8 @@ const Content = () => {
                 <Route path='/detail/:id' element={<DetailPage />} />
                 {/*<Route path='/detail/:id' element={<DetailPage2 />} />*/}
                 <Route path='/login' element={<LoginPage />} />
+                <Route path='/cart' element={<CartPage />} />
+                <Route path='*' element={'NOT FOUND'} />
             </Routes>
         </div>
     );

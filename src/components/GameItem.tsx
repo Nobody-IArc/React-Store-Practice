@@ -24,7 +24,7 @@ const GameItem: React.FC<GameItemProps> = ({ game }) => {
                         </div>
                     </Card.Body>
                     <div className='linkTo'>
-                        <Link to='/'>
+                        <Link to={`/detail/${game.id}`} state = {{ game }}>
                             <Button variant='primary'>상세 보기</Button>
                         </Link>
                     </div>

@@ -1,12 +1,14 @@
-import { Navbar, Container, Nav, Col, Row, Card, Button } from 'react-bootstrap';
-import CustomCarousel from '../components/Carousel';
-import gameData, { type Game } from '../data/Gamedata';
-import { useState } from 'react';
-import GameItem from '../components/GameItem';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Route, Routes } from 'react-router-dom';
+import AboutPage from '../pages/AboutPage';
+import ListPage from '../pages/ListPage';
+import ContactPage from '../pages/ContactPage';
+import CartPage from '../pages/CartPage';
+import DetailPage from '../pages/DetailPage';
+import LoginPage from '../pages/LoginPage';
+import HomePage from '../pages/HomePage';
 
 const Content = () => {
-    const [games, setGame] = useState<Game[]>(gameData);
-    console.log(games);
 
     return (
         <div>
@@ -21,19 +23,15 @@ const Content = () => {
                     </Nav>
                 </Container>
             </Navbar>
-            <CustomCarousel/>
-
-            <Container>
-                <div className='project_header_container'>
-                    <h1 className='project_header'>Best Seller</h1>
-                    <div className='hr'></div>
-                </div>
-                <Row className='text-center'>
-                    {games.map((game) => {
-                        return <GameItem key={game.id} game={game} />
-                    })}
-                </Row>
-            </Container>
+            <Routes>
+                <Route path='/' element={<HomePage />} />
+                <Route path='/about' element={<AboutPage />} />
+                <Route path='/list' element={<ListPage />} />
+                <Route path='/contact' element={<ContactPage />} />
+                <Route path='/cart' element={<CartPage />} />
+                <Route path='/detail/:id' element={<DetailPage />} />
+                <Route path='/login' element={<LoginPage />} />
+            </Routes>
         </div>
     );
 };

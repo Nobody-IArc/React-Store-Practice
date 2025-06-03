@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { type CartItem, type CartArray, increase, plusCount, minusCount } from '../data/store';
+import { type CartItem, type CartArray, increase, plusCount, minusCount, resetCart } from '../data/store';
 
 interface CartState {
     cart: CartArray;
@@ -58,6 +58,8 @@ const CartPage = () => {
                     <Button variant='success' onClick={() => {
                         dispatch(increase(10))
                     }}>주문하기</Button>
+                    <Button variant='primary' onClick={() => {
+                        dispatch(resetCart())}}>카트 비우기</Button>
                     <div>{cartState.user.id}</div>
                 </Col>
             </Row>

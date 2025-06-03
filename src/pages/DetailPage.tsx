@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { type Game } from '../data/Gamedata';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { addItem } from '../data/store';
+import { useDispatch } from 'react-redux';
 
 interface LocationState {
     game: Game;
@@ -13,6 +15,8 @@ const DetailPage = () => {
     const location = useLocation();
     const { state } = location as { state: LocationState };
     const game = state?.game;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     // console.log(game);
     // console.log(state);
 
@@ -40,7 +44,8 @@ const DetailPage = () => {
                                 <Button
                                     variant='primary'
                                     onClick={() => {
-                                        console.log('딸깍');
+                                        dispatch(addItem({ id: game.id, name: game.name, price: game.price }));
+                                        navigate('/cart');
                                     }}>Add to Cart</Button>
                             </Card.Body>
                         </Card>

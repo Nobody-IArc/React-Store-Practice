@@ -5,7 +5,7 @@ import GameItem from '../components/GameItem';
 import gameData, { type Game } from '../data/Gamedata';
 
 const HomePage = () => {
-    const [games, setGame] = useState<Game[]>(gameData);
+    const [games] = useState<Game[]>(gameData);
 
     return (
         <div>

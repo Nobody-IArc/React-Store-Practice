@@ -1,4 +1,6 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, createSlice } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const user = createSlice({
     name: 'user',
@@ -32,29 +34,59 @@ export interface CartArray {
 const cart = createSlice({
     name: 'cart',
     initialState: {
-        cart: [
-            { id: 0, name: 'Black Myth - Wukong', quantity: 1, price: 66800 },
-            { id: 1, name: 'Dragon Quest III - HD-2D Remake', quantity: 2, price: 67800},
-        ],
+        cart: [],
     } as CartArray,
     reducers: {
         plusCount(state, action) {
-            state.cart[action.payload].quantity += 1;
+            const item = state.cart.find((item) => item.id === action.payload);
+            if (item) {
+                item.quantity++;
+            }
         },
         minusCount(state, action) {
-            state.cart[action.payload].quantity -= 1;
-        }
-    }
-})
-
-// eslint-disable-next-line react-refresh/only-export-components
-export default configureStore({
-    reducer: {
-        user: user.reducer,
-        stock: stock.reducer,
-        cart: cart.reducer
+            const item = state.cart.find((item) => item.id === action.payload);
+            if (item && item.quantity > 0) {
+                item.quantity--;
+            }
+        },
+        addItem(state, action) {
+            const existingItem = state.cart.find((item) => item.id === action.payload.id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                state.cart.push({
+                    id: action.payload.id,
+                    name: action.payload.name,
+                    quantity: 1,
+                    price: action.payload.price,
+                });
+            }
+        },
+        resetCart(state) {
+            state.cart = [];
+        },
     }
 })
 
 export const {changeName, increase} = user.actions;
-export const { plusCount, minusCount } = cart.actions;
+export const { plusCount, minusCount, addItem, resetCart } = cart.actions;
+
+const rootReducer = combineReducers({
+    user: user.reducer,
+    stock: stock.reducer,
+    cart: cart.reducer,
+});
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+    reducer: persistedReducer,
+});
+
+export const persistor = persistStore(store);
+export default store;
